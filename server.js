@@ -21,6 +21,8 @@ mongoose.connect(MONGODB_URI, {
   useFindAndModify: false,
   useUnifiedTopology: true
 });
+mongoose.connection.once('open', () => { console.log('MongoDB Connected'); });
+mongoose.connection.on('error', (err) => { console.log('MongoDB connection error: ', err); });
 
 // routes
 app.use(require("./routes/api"));
